@@ -557,15 +557,21 @@ body {
   left: 0;
   z-index: 1000;
 }
-
 .zustpe {
   background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
-  background-clip: text;
+  background-clip: text;  
   -webkit-background-clip: text;
   color: transparent;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Zustpe_Font";
+  width:40vw;
+  font-size: 1.26em;
 }
 
+@font-face {
+  font-family: Zustpe_Font;
+  /* src: url(./fonts/Zustpe_Font.ttf) format("truetype" ); */
+  src: url(./Zustpe_Italic.otf) format("opentype");
+}
 
 /* .arrowDown{
   position: absolute;
@@ -595,12 +601,42 @@ body {
     font-size: 1.4vw;
   }
 
-.get-started-button:hover {
-  background: linear-gradient(90deg, #6c79bb 0%, #784f9f 100%);
-}
-.get-started-button:hover .arrow-img {
+  .get-started-button:hover {
+    background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
+  }
+  .get-started-button:hover .arrow-img {
   content: url("./images/arrow2.png");
 }
+
+
+.get-started-button1:hover {
+  background: linear-gradient(90deg,#784f9f 0%,  #6c79bb 100%);
+}
+.get-started-button1:hover .arrow-img {
+  /* content: url("./images/arrow2.png"); */
+  content: url("./images/arrow1.png");
+
+}
+.run_once {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px; /* Adjust height as needed */
+}
+
+.run-once-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* .run_once :hover{
+  content: url("./images/Zustpe7.png");
+  cursor: pointer;
+} */
+
+
+
 .button-text {
   margin-right: 10px;
 }
@@ -1743,6 +1779,7 @@ body {
   background-color: #0e0e0e;
   color: #fff;
   width: 100%;
+  margin-top: -35px;
 }
 
 .cta-section h2 {
@@ -1776,6 +1813,8 @@ body {
   padding: 40px 20px;
   text-align: center;
   font-family: "Outfit", sans-serif;
+      width: 100%;
+    margin-top: -35px;
 }
 
 .footer-columns {
@@ -2068,16 +2107,7 @@ body {
     line-height: 1.5;
     margin-top: 9.5vh;
   } */
-  .zustpe {
-    display: inline-block;
-    background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
-    background-clip: text;
-    -webkit-background-clip: text; /* Safari support */
-    color: transparent;
-    font-family: "orgasm", sans-serif;
-    font-size: 1.5em;
-    vertical-align: middle;
-  }
+
   /* .strap {
     height: 70px;
   } */
@@ -2468,13 +2498,6 @@ body {
     margin-top: 2vh;
   }
 
-  .zustpe {
-    background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: "Bebas Neue", sans-serif;
-  }
 
 
   .extra-content {
@@ -2787,7 +2810,15 @@ body {
           height: 38px;
           font-size: 1.2rem;
         }
-  
+  .zustpe {
+  background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
+  background-clip: text;  
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: "Zustpe_Font";
+  width:100%;
+  font-size: 1.26em;
+}
   .get-started-button2 {
     position: absolute;
     font-size: 0.3rem;
@@ -2998,7 +3029,7 @@ margin-right: 20px;
     letter-spacing: 0.5px;
     text-align: center;
     padding: 10px 4px;
-
+    margin-right: 10px;
     transition: color 0.3s ease;
   }
 
@@ -3011,6 +3042,9 @@ margin-right: 20px;
     border-radius: 1.5em;
     position: fixed;
   }
+    .get-started-button:hover .arrow-img  {
+  content: url("./images/arrow2.png");
+}
 
   .arrow-img {
     width: 1vw;
@@ -3039,6 +3073,9 @@ margin-right: 20px;
     /* margin-top: -70vh; */
     margin-top: -450px;
     letter-spacing: 3%;
+        display: inline-block;
+        width: fit-content;
+        pointer-events: none;
   }
 
   .main-container {
@@ -3166,13 +3203,6 @@ margin-right: 20px;
 
   .cta-section h2 {
     font-size: 2rem;
-  }
-  .zustpe {
-    background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: "Bebas Neue", sans-serif;
   }
 
 .bgimg {
@@ -3996,14 +4026,6 @@ article:nth-of-type(3) {
         }
       }
 
-
-  .zustpe {
-    background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: "Bebas Neue", sans-serif;
-  }
 .marquee-bar {
   background-color: #000;
   color: white;
@@ -4347,6 +4369,9 @@ article:nth-of-type(3) {
     margin-bottom: 180px;
     /* margin-left: -10vw; */
     margin-top: -45vh;
+        display: inline-block;
+        width: fit-content;
+        pointer-events: none;
   }
   .header-center {
     display: flex;
@@ -4373,6 +4398,7 @@ article:nth-of-type(3) {
     text-align: center;
     padding: 6px 10px;
     transition: color 0.3s ease;
+    margin-right: 25px;
   }
   .get-started-button {
     font-size: 1.2rem;
@@ -4790,13 +4816,7 @@ article:nth-of-type(3) {
       }
 
 
-  .zustpe {
-    background: linear-gradient(90deg, #784f9f 0%, #6c79bb 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: "Bebas Neue", sans-serif;
-  }.marquee-bar {
+  .marquee-bar {
   background-color: #000;
   color: white;
   overflow: hidden;
@@ -4851,6 +4871,7 @@ article:nth-of-type(3) {
     text-align: center;
     padding: 6px 10px;
     transition: color 0.3s ease;
+    
   }
 
   .get-started-button {
@@ -4863,6 +4884,7 @@ article:nth-of-type(3) {
   }
 .get-started-button:hover .arrow-img {
   content: url("./images/arrow2.png");
+  cursor: pointer;
 }
   .arrow-img {
     width: 0.4vw;
@@ -4876,6 +4898,9 @@ article:nth-of-type(3) {
     margin-top: -30vw;
     line-height: 120px;
     letter-spacing: 3%;
+        display: inline-block;
+        width: fit-content;
+        pointer-events: none;
   }
 
   .main-container {

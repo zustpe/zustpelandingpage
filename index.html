@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZustPe | Empowering Success, Transforming Potential</title>
     <link rel="stylesheet" href="style.css" />
+    <title>ZustPe | Empowering Success, Transforming Potential</title>
     <link rel="icon" href="./images/Logo.png" type="image/png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -80,9 +80,7 @@
                   Zeal & Upliftment for Success and <br />
                   Transformation with Potential Empowerment<br />
                   Basically
-                  <span class="zustpe" style="font-family: Ethnocentric"
-                    >ZUSTPE</span
-                  >
+                  <span class="zustpe">ZUSTPE</span>
                 </h1>
                 <img src="./images/arrowDown.png" class="arrowDown" alt="" />
               </div>
@@ -334,6 +332,198 @@
       <!-- end of rakshana code -->
     </div>
 
+    <!-- Call to Action (above footer) -->
+    <section class="cta-section">
+      <h2>
+        Join 20+ businesses transforming their operations with ZustPe. Get
+        started today!
+      </h2>
+      <div class="cta-buttons">
+        <button class="btn-outline">Contact</button>
+        <!-- <button class="btn-filled">Get Started <span>↗</span></button> -->
+        <!-- <img src="./images/Link.png" alt="Zustpe Logo" class="header-right" /> -->
+        <a href="#" class="get-started-button1">
+          <span class="button-text">Get Started</span>
+          <span class="arrow-circle1">
+            <img src="./images/arrow2.png" alt="Arrow" class="arrow-img" />
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>Group companies</h4>
+          <ul>
+            <li>ZustPe Technologies Pvt Ltd</li>
+            <li>ZustPe Payments Pvt Ltd</li>
+            <li>ZustPe Achievers Foundation</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li>Terms & Conditions</li>
+            <li>About Us</li>
+            <li>Privacy Policy</li>
+            <li>Careers</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Help</h4>
+          <ul>
+            <li>Support</li>
+            <li>Refund and Cancellation Policy</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Socials</h4>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>LinkedIn</li>
+            <li>YouTube</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- -----  -->
+
+      <div class="run_once"></div>
+      <div class="footer-bottom">
+        <p>ZustPe Technologies Pvt Ltd. All Rights Reserved</p>
+        <p>Made by freshers with ❤️ in Chennai</p>
+      </div>
+    </footer>
+
     <script src="Home_copy.js"></script>
+    <script>
+      const section = document.querySelector("#card-section");
+      const articles = section.querySelectorAll("article");
+      let currentIndex = 0;
+      let isScrolling = false;
+
+      function updateCards() {
+        articles.forEach((article, i) => {
+          const isVisible = i <= currentIndex;
+
+          if (isVisible) {
+            article.style.setProperty("--_scale", 1 - (currentIndex - i) * 0.1);
+            article.style.setProperty(
+              "--_opacity",
+              1 - (currentIndex - i) * 0.1
+            );
+            article.style.setProperty(
+              "--_offset",
+              `-${(currentIndex - i) * 1.5}rem`
+            );
+            article.style.setProperty("--_order", 10 - (currentIndex - i));
+          } else {
+            article.style.setProperty("--_scale", 0.2);
+            article.style.setProperty("--_opacity", 0.3);
+            article.style.setProperty("--_offset", "1rem");
+            article.style.setProperty("--_order", 0);
+          }
+        });
+      }
+
+      function handleScroll(e) {
+        if (isScrolling) return;
+        const delta = e.deltaY;
+
+        // Only block scrolling if we're within card range
+        if (
+          (delta > 0 && currentIndex < articles.length - 1) ||
+          (delta < 0 && currentIndex > 0)
+        ) {
+          e.preventDefault(); // prevent page scroll ONLY if we can move between cards
+          isScrolling = true;
+
+          if (delta > 0 && currentIndex < articles.length - 1) {
+            currentIndex++; // move down
+          } else if (delta < 0 && currentIndex > 0) {
+            currentIndex--; // move up
+          }
+
+          updateCards();
+
+          setTimeout(() => {
+            isScrolling = false;
+          }, 400);
+        }
+        // else → let the page scroll normally
+      }
+
+      section.addEventListener("wheel", handleScroll, { passive: false });
+      updateCards();
+      // -------------------------- this is background load--------------------
+
+      const bg = document.querySelector(".bgimg");
+      const images = [];
+      let i = 0;
+      const sequences = [
+        { path: "./images/mobiles/Comp 5_", count: 78, pad: 5 }, // bala_00000 → bala_00077
+        { path: "./images/mobiles/Comp 6_", count: 77, pad: 5 }, // Comp 6_00001 → Comp 6_00077
+        { path: "./images/Tab/Comp 7_", count: 78, pad: 5 }, // Comp 7_00000 → Comp 7_00077
+      ];
+
+      // Preload all sequences
+      function preloadImages(callback) {
+        let loaded = 0;
+        let total = sequences.reduce((sum, seq) => sum + seq.count, 0);
+
+        sequences.forEach((seq) => {
+          for (let j = 0; j < seq.count; j++) {
+            const img = new Image();
+            img.src = `${seq.path}${String(j).padStart(seq.pad, "0")}.jpg`;
+            img.onload = () => {
+              loaded++;
+              if (loaded === total) callback();
+            };
+            images.push(img);
+          }
+        });
+      }
+
+      // Animate background cycling through all loaded images
+      function animate() {
+        bg.style.backgroundImage = `url('${images[i].src}')`;
+        i = (i + 1) % images.length;
+        setTimeout(animate, 50); // 20fps
+      }
+
+      // Start
+      preloadImages(animate);
+
+      // -------------------------------------
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".container1");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const circles =
+                  entry.target.previousElementSibling.querySelectorAll(
+                    ".circle"
+                  );
+                circles.forEach((c) => c.classList.add("animate"));
+                // Uncomment this if you want animation only once per section
+                // observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 } // run when 50% of section is visible
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      });
+    </script>
   </body>
 </html>
