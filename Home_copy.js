@@ -84,3 +84,100 @@ document.addEventListener("DOMContentLoaded", () => {
     headerSection.scrollIntoView({ behavior: "smooth" });
   }
 });
+
+// -------------------------------------------- mouse -----
+
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.querySelector(".get-started-button");
+  const arrowImg = document.querySelector(".arrow-img");
+
+  if (button && arrowImg) {
+    // On hover (mouse enters button)
+    button.addEventListener("mouseenter", () => {
+      arrowImg.src = "./images/arrow2.png"; // Change to the white arrow
+    });
+
+    // On hover out (mouse leaves button)
+    button.addEventListener("mouseleave", () => {
+      arrowImg.src = "./images/arrow1.png"; // Revert back to the default arrow
+    });
+  }
+});
+
+// ----------------- loding --------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+  const runOnceDiv = document.querySelector(".run_once");
+  let currentImageIndex = 1;
+  const maxImageIndex = 8;
+  let animationInterval = null;
+  let hasAnimated = false; // Flag to track if animation has run
+  let isHovering = false; // Flag to track hover state
+
+  // Function to update the image
+  function updateImage() {
+    if (!isHovering) {
+      // Only update image if not hovering
+      runOnceDiv.innerHTML = `<img src="./images/Zustpe${currentImageIndex}.png" alt="Zustpe Image ${currentImageIndex}" class="run-once-img" />`;
+      currentImageIndex++;
+      if (currentImageIndex > maxImageIndex) {
+        clearInterval(animationInterval); // Stop at Zustpe8.png
+        animationInterval = null;
+        hasAnimated = true; // Mark animation as complete
+      }
+    }
+  }
+
+  // Function to set image source
+  function setImage(index) {
+    runOnceDiv.innerHTML = `<img src="./images/Zustpe${index}.png" alt="Zustpe Image ${index}" class="run-once-img" />`;
+  }
+
+  // Intersection Observer to check if run_once div is in viewport
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animationInterval && !hasAnimated) {
+          // Start animation only if div is visible, animation hasn't started, and hasn't completed
+          updateImage(); // Show first image immediately
+          animationInterval = setInterval(updateImage, 500); // Change image every 500ms
+        } else if (!entry.isIntersecting && animationInterval) {
+          // Stop animation when div is not visible
+          clearInterval(animationInterval);
+          animationInterval = null;
+          if (!isHovering && hasAnimated) {
+            // Ensure Zustpe8.png is shown if animation is complete and not hovering
+            setImage(8);
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Trigger when 10% of the div is visible
+    }
+  );
+
+  // Start observing the run_once div
+  observer.observe(runOnceDiv);
+
+  // Hover event handlers
+  runOnceDiv.addEventListener("mouseenter", () => {
+    isHovering = true; // Mark as hovering
+    setImage(7); // Show Zustpe7.png on hover
+  });
+
+  runOnceDiv.addEventListener("mouseleave", () => {
+    isHovering = false; // Mark as not hovering
+    if (hasAnimated) {
+      // If animation is complete, show Zustpe8.png
+      setImage(8);
+    } else if (currentImageIndex <= maxImageIndex) {
+      // If animation is not complete, resume from current index
+      setImage(currentImageIndex);
+      if (runOnceDiv.isIntersecting !== false) {
+        // Resume animation only if div is still in viewport
+        animationInterval = setInterval(updateImage, 500);
+      }
+    }
+  });
+});
